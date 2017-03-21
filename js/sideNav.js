@@ -300,10 +300,14 @@
             removeMenu();
           }
           else {
-
             // Disable Scrolling
             var $body = $('body');
-            var $overlay = $('<div id="sidenav-overlay"></div>');
+            var $overlay = $('#sidenav-overlay');
+
+            if ($overlay.length === 0) {
+              $overlay = $('<div id="sidenav-overlay"></div>');
+            }
+
             var oldWidth = $body.innerWidth();
             $body.css('overflow', 'hidden');
             $body.width(oldWidth);
