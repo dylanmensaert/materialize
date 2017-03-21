@@ -1431,7 +1431,7 @@ if (jQuery) {
 
 
       // If the location.hash matches one of the links, use that as the active tab.
-      $active = $($links.filter('[href="'+location.hash+'"]'));
+      $active = $();
 
       // If no match is found, use the first link or any with class 'active' as the initial active tab.
       if ($active.length === 0) {
@@ -1484,11 +1484,6 @@ if (jQuery) {
       // Initialize Tabs Content.
       if (options.swipeable) {
         // TODO: Duplicate calls with swipeable? handle multiple div wrapping.
-        $links.each(function () {
-          var $curr_content = $(Materialize.escapeHash(this.hash));
-          $curr_content.addClass('carousel-item');
-          $tabs_content = $tabs_content.add($curr_content);
-        });
         $tabs_wrapper = $tabs_content.wrapAll('<div class="tabs-content carousel"></div>');
         $tabs_content.css('display', '');
         $('.tabs-content.carousel').carousel({
@@ -1502,11 +1497,6 @@ if (jQuery) {
               animateIndicator(prev_index);
             }
           },
-        });
-      } else {
-        // Hide the remaining content
-        $links.not($active).each(function () {
-          $(Materialize.escapeHash(this.hash)).hide();
         });
       }
 
@@ -1533,7 +1523,6 @@ if (jQuery) {
 
         // Update the variables with the new link and content
         $active = $(this);
-        $content = $(Materialize.escapeHash(this.hash));
         $links = $this.find('li.tab a');
         var activeRect = $active.position();
 
