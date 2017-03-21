@@ -600,6 +600,7 @@ module.exports = function(grunt) {
     ]
   );
 
+  grunt.registerTask('deploy', ['concat:dist', 'uglify:dist']);
   grunt.registerTask('jade_compile', ['jade', 'notify:jade_compile']);
   grunt.registerTask('js_compile', ['concat:temp', 'uglify:bin', 'notify:js_compile', 'clean:temp']);
   grunt.registerTask('sass_compile', ['sass:gh', 'sass:bin', 'postcss:gh', 'postcss:bin', 'notify:sass_compile']);
